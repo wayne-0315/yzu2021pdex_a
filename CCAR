@@ -2,56 +2,122 @@
 // main.cpp
 // OOP_DEMO_CAR
 //
-// Created by wpfang on 2021/3/8.
-// Copyright © 2021 wpfang. All rights reserved.
+/**
+ *@author wayne
+ *@date 2021/3/19
+ *@version 1.0
+ */
 //
 #include <iostream>
 #include <string>
 using namespace std;
 class CCAR {
+/*
+ *private
+ *宣告參數
+ *@parm nickname,light,wheel.
+ *@return Nothing.
+ */
 private:
 string nickname;
 protected:
 int light;
 int wheel;
+/**
+ *public
+ *建構函式，設定參數值，後輸出文字.
+ *執行時設定 light，wheel值.
+
+ *並輸出 car's constructor(wheel=5).
+ *@return Nothing.
+ */
 public:
 CCAR() :light(2)
 {
 wheel = 5;
 cout << "car's constructor(wheel=" << wheel << ")" << endl;
 }
+/**
+ *建構函式，設定變數值，引用變數值，輸出文字.
+ *執行時設定 light值，wheel值.
+
+ *函式內 nickname 引用類別變數 nickname 的值.
+
+ *並輸出 car's constructor(nickname=nickname值).
+ *@return Nothing. 
+ */
 CCAR(string nickname) :light(2)
 {
 wheel = 5;
 this->nickname = nickname;
 cout << "car's constructor(nickname=" << nickname << ")" << endl;
 }
+/**
+ *解構函式，輸出文字.
+ *輸出 car's destructor(nickname值). 
+ */
 ~CCAR()
 {
 cout << "car's destructor" << "(" << nickname << ")" << endl;
 }
+/**
+ *新增函式，輸出文字.
+ *輸出 car's start. 
+ */
 void start()
 {
 cout << "car's start" << endl;
 }
+/**
+ *新增函式，輸出文字.
+ *輸出 car's stop. 
+ */
 void stop()
 {
 cout << "car's stop" << endl;
 }
+/**
+ *新增函式，輸出文字.
+ *輸出 car's turn. 
+ */
 void turn()
 {
 cout << "car's turn" << endl;
 }
 };
 //--------------------------
+/**
+ *建構類別並繼承.
+ *建構類別 CBMW 並繼承類別 CCAR. 
+ */
 class CBMW : public CCAR {
 public:
+/**
+ *建構函式，設定變數值，輸出文字.
+ *執行時設定light值，wheel值.
+
+ *並輸出 bmw's constructor(nickname=nickname值).
+ *@return Nothing. 
+ */
 CBMW() { light = 4; wheel = 4; cout << "bmw's constructor" << endl; }
+/**
+ *解構函式，輸出文字.
+ *輸出 bmw's constructor(nickname=nickname值).
+ *@return Nothing. 
+ */
 ~CBMW() { cout << "bmw's destructor" << endl; }
+/**
+ *新增函式，輸出文字.
+ *新增函式 Abs()執行時輸出 bmw's abs. 
+ */
 void Abs()
 {
 cout << "bmw's abs" << endl;
 }
+/**
+ *複寫函式，輸出文字、函式. 
+ *複寫函式 start()，輸出 bmw's start後，使用繼承 CCAR 的函式 Start(). 
+ */
 void start()
 {
 cout << "bmw's start" << endl;
@@ -60,6 +126,14 @@ CCAR::start();//scope operator
 }
 };
 //--------------------------
+/**
+ *執行主程式. 
+ *創建名為 bmw的 CBMW類別.
+ *優先先執行建構函式. 
+ *後依序執行 bmw裡的函式 Start(),Abs(),Stop().
+ *執行解構函式.
+ *@return 0. 
+ */
 int main(int argc, const char * argv[]) {
 CBMW bmw;
 // bmw.light=3;
